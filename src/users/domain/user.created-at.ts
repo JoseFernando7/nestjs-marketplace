@@ -1,5 +1,5 @@
 export class UserCreatedAt {
-  private readonly value: Date;
+  readonly value: Date;
 
   constructor(value: Date) {
     if (!(value instanceof Date) || isNaN(value.getTime())) {
@@ -16,4 +16,3 @@ export class UserCreatedAt {
     return this.value.toISOString();
   }
 }
-

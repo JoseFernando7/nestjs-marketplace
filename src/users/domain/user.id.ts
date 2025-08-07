@@ -1,5 +1,5 @@
 export class UserId {
-  private readonly value: string;
+  readonly value: string;
 
   constructor(value: string) {
     if (!value || typeof value !== 'string') {
@@ -16,4 +16,3 @@ export class UserId {
     return this.value;
   }
 }
-
