@@ -20,9 +20,8 @@ import { TypeormUserEntity } from '../TypeOrm/typeorm.user.entity';
 
     {
       provide: 'UserFindAll',
-      useFactory: (repository: TypeormUserRepository) => {
-        new UserFindAll(repository);
-      },
+      useFactory: (repository: TypeormUserRepository) =>
+        new UserFindAll(repository),
       inject: ['UserRepository'],
     },
 
