@@ -6,6 +6,8 @@ import { User } from 'src/users/domain/user';
 import { UserId } from 'src/users/domain/user.id';
 import { UserCreatedAt } from 'src/users/domain/user.created-at';
 import { UserNotFoundError } from 'src/users/domain/user.not-found-error';
+import { UserName } from 'src/users/domain/user.name';
+import { UserEmail } from 'src/users/domain/user.email';
 
 export class TypeormUserRepository implements UserRepository {
   constructor(
@@ -16,8 +18,8 @@ export class TypeormUserRepository implements UserRepository {
   private mapToDomain(user: TypeormUserEntity): User {
     return new User(
       new UserId(user.id),
-      user.name,
-      user.email,
+      new UserName(user.name),
+      new UserEmail(user.email),
       new UserCreatedAt(user.createdAt),
     );
   }
@@ -41,8 +43,8 @@ export class TypeormUserRepository implements UserRepository {
   async create(user: User): Promise<void> {
     const userEntity = this.userRepository.create({
       id: user.id.value,
-      name: user.name,
-      email: user.email,
+      name: user.name.value,
+      email: user.email.value,
       createdAt: user.createdAt.value,
     });
     await this.userRepository.save(userEntity);
@@ -50,8 +52,8 @@ export class TypeormUserRepository implements UserRepository {
 
   async update(user: User): Promise<void> {
     await this.userRepository.update(user.id.value, {
-      name: user.name,
-      email: user.email,
+      name: user.name.value,
+      email: user.email.value,
       createdAt: user.createdAt.value,
     });
   }
