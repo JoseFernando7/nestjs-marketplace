@@ -10,4 +10,7 @@ export class ProductCreateHttpDto {
 
   @IsNumber()
   price: number;
+
+  @IsString()
+  image: string;
 }

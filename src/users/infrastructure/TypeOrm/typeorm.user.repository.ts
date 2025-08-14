@@ -40,6 +40,16 @@ export class TypeormUserRepository implements UserRepository {
     return this.mapToDomain(user);
   }
 
+  async findByName(name: UserName): Promise<User | null> {
+    const user = await this.userRepository.findOne({
+      where: { name: name.value },
+    });
+
+    if (!user) return null;
+
+    return this.mapToDomain(user);
+  }
+
   async create(user: User): Promise<void> {
     const userEntity = this.userRepository.create({
       id: user.id.value,

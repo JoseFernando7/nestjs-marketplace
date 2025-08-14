@@ -12,12 +12,15 @@ import { FindByIdUserController } from './infrastructure/http/controllers/find_b
 import { CreateUserController } from './infrastructure/http/controllers/create-user.controller';
 import { UpdateUserController } from './infrastructure/http/controllers/update-user.controller';
 import { DeleteUserController } from './infrastructure/http/controllers/delete-user.controller';
+import { FindByNameUserController } from './infrastructure/http/controllers/find_by_name-user.controller';
+import { UserFindByName } from './application/UserFindByName/user.find-by-name';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TypeormUserEntity])],
   controllers: [
     FindAllUserController,
     FindByIdUserController,
+    FindByNameUserController,
     CreateUserController,
     UpdateUserController,
     DeleteUserController,
@@ -46,6 +49,13 @@ import { DeleteUserController } from './infrastructure/http/controllers/delete-u
       provide: 'UserFindById',
       useFactory: (repository: TypeormUserRepository) =>
         new UserFindById(repository),
+      inject: ['UserRepository'],
+    },
+
+    {
+      provide: 'UserFindByName',
+      useFactory: (repository: TypeormUserRepository) =>
+        new UserFindByName(repository),
       inject: ['UserRepository'],
     },
 

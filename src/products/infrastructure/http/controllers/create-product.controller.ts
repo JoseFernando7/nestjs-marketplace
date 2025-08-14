@@ -11,6 +11,11 @@ export class CreateProductController {
 
   @Post()
   async create(@Body() body: ProductCreateHttpDto) {
-    return await this.productCreate.run(body.id, body.name, body.price);
+    return await this.productCreate.run(
+      body.id,
+      body.name,
+      body.price,
+      body.image,
+    );
   }
 }

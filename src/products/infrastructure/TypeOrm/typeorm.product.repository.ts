@@ -6,6 +6,7 @@ import { ProductId } from 'src/products/domain/product.id';
 import { ProductName } from 'src/products/domain/product.name';
 import { ProductPrice } from 'src/products/domain/product.price';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ProductImage } from 'src/products/domain/product.image';
 
 export class TypeormProductRepository implements ProductRepository {
   constructor(
@@ -18,6 +19,7 @@ export class TypeormProductRepository implements ProductRepository {
       new ProductId(product.id),
       new ProductName(product.name),
       new ProductPrice(product.price),
+      new ProductImage(product.image),
     );
   }
 
@@ -26,6 +28,7 @@ export class TypeormProductRepository implements ProductRepository {
       id: product.id.value,
       name: product.name.value,
       price: product.price.value,
+      image: product.image.value,
     });
     await this.productRepository.save(productEntity);
   }

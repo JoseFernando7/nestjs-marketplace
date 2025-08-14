@@ -10,4 +10,7 @@ export class TypeormProductEntity {
 
   @Column()
   price: number;
+
+  @Column()
+  image: string;
 }

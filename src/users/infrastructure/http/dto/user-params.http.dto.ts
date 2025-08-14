@@ -4,4 +4,7 @@ export class UserParamsHttpDto {
   @IsString()
   @Length(5, 255)
   id: string;
+
+  @IsString()
+  name: string;
 }
